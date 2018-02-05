@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5.QtMultimedia import QSound
 from gojuuon_ui import Ui_Form
 
 class Gojuuon(QWidget):
@@ -11,9 +12,14 @@ class Gojuuon(QWidget):
         self.ui.setupUi(self)
 
         # Image Banner
-        self.img_label = QLabel(self)
         self.imgPath = QPixmap("media/img/gojuuon-banner-new.jpg")
-        self.img_label.setPixmap(self.imgPath)
+        self.ui.img_banner.setPixmap(self.imgPath)
+        
+        # Buttons
+        self.ui.a_button.clicked.connect(self.play)
+
+    def play(self):
+        QSound.play("media/sound/a.wav")
 
 def main():
     app = QApplication(sys.argv)
